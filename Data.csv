@@ -1,0 +1,15 @@
+IC No.,Functionality,Short Circuit Pins,Fault Classification,Comments,Constraints
+TL064,Op-Amp,4 – 11,Dangerous Fault,Op-Amp cannot be operated,Iin = 250μA & Vin = 6mV
+TL064,Op-Amp,2 – 3,Dangerous Fault,Op-Amp cannot receive Input,Iin = 250μA & Vin = 6mV
+TL064,Op-Amp,2 – 1,Safe Fault,Op-Amp operates with less current,Iin = 250μA & Vin = 6mV
+TL064,Op-Amp,3 – 1,Dangerous Fault,Op-Amp cannot be operated,Iin = 250μA & Vin = 6mV
+TL064,Op-Amp,11 – 1,Safe Fault,Having a constant output of -Vcc,Iin = 250μA & Vin = 6mV
+TL064,Op-Amp,4 – 1,Safe Fault,Having a constant output of +Vcc,Iin = 250μA & Vin = 6mV
+G3VM-61ER,MOSFET Relay,1 – 2,Dangerous Fault,Output cannot be driven,Vin Max = 1.48V & IFT = 3mA
+G3VM-61ER,MOSFET Relay,1 – 6,Safe Fault,Low current. Output can be operated,Vin Max = 1.48V & IFT = 3mA
+G3VM-61ER,MOSFET Relay,1 – 4,Safe Fault,Low current. Output can be operated,Vin Max = 1.48V & IFT = 3mA
+G3VM-61ER,MOSFET Relay,6 – 4,Dangerous Fault,Load Short Ciruited,Vin Max = 1.48V & IFT = 3mA
+NTD20P06L,Power FET,1 – 3,Safe Fault,Less Current passes,V43 Max = -2V & V13 Max = -5V
+NTD20P06L,Power FET,3 – 4,Dangerous Fault,FET cannot control output,V43 Max = -2V & V13 Max = -5V
+NTD20P06L,Power FET,1 – 4,Dangerous Fault,FET cannot control output,V43 Max = -2V & V13 Max = -5V
+MAX4507,Maxim,1 – 19,Safe Fault,Normal Functioning,Iin = +1μA & Vin = +40

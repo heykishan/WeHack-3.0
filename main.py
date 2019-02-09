@@ -1,46 +1,58 @@
-import re
+import test
 import csv
-import sys
+from tkinter import *
 
-#def csv write
+screen = Tk()
+screen.geometry("1000x720")
+screen.title("Honeywell Saftey board")
 
-print("isMosFET\n")
-isMosFet = input()
+heading = Label(text = "Fault Insertion testing dashboard", bg = "white", fg = "black", width = "720", height = "3")
+heading.pack()
 
-print("isMutiplexer\n")
-isMultiplexer = input()
+usage_guidelines = Label(text="Please enter the component number of the IC to being Fault insertion testing")
+usage_guidelines.place(x = 20, y = 200)
+usage_guidelines.pack()
 
-print("isAOFET\n")
-isAOFET = input()
+def begin_test():
+    cinfo_one = component_one.get()
+    cinfo_two = component_two.get()
+    cinfo_three = component_three.get()
+    cinfo_four = component_four.get()
 
-print("isSMODFET\n")
-isSMODFET = input()
+    myData = [[cinfo_one], [cinfo_two], [cinfo_three], [cinfo_four]] 
+    myFile = open('test.csv', 'w')  
+    with myFile:
+        writer = csv.writer(myFile)
+        writer.writerows(myData)
+        print("written successfully")
 
-print("isBJT\n")
-isBJT = input()
+    
+component_one = Label(text = "Componenet 1")
+component_one.place(x = 2, y = 150)
 
-row = [isMosFet, isMultiplexer, isAOFET, isSMODFET, isBJT]
+component_two = Label(text = "Componenet 2")
+component_two.place(x = 2, y = 230)
 
+component_three = Label(text = "Componenet 3")
+component_three.place(x = 2, y = 310)
 
-with open('test.csv', 'w') as writeFile:
-    writer = csv.writer(writeFile)
-    writer.writerows(row)
+component_four = Label(text = "Componenet 4")
+component_four.place(x = 2, y = 390)
 
-print("c")
+component_one = StringVar()
+component_two = StringVar()
+component_three = StringVar()
+component_four = StringVar()
 
-writeFile.close()
+cp1_entry = Entry(textvariable = component_one, width = 30)
+cp2_entry = Entry(textvariable = component_two, width = 30)
+cp3_entry = Entry(textvariable = component_three, width = 30)
+cp4_entry = Entry(textvariable = component_four, width = 30)
 
+cp1_entry.place( x= 150, y = 150)
+cp2_entry.place( x= 150, y = 230)
+cp3_entry.place( x= 150, y = 310)
+cp4_entry.place( x= 150, y = 390)
 
-with open('test.csv', 'r') as readFile:
-    reader = csv.reader(readFile)
-    lines = list(reader)
-
-print(lines)
-
-readFile.close()
-
-# from pdf import PdfFileReader, PdfFileWriter
-
-# pdf = pdf.PdfFileReader(open("faultInsertion.pdf", "rb"))
-# for page in pdf.pages:
-#     print(page.extractText())
+register = Button(screen,text = "Analyze", width = "30", height = "3", command = begin_test, bg = "white")
+register.place(x = 500, y = 600)

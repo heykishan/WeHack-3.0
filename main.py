@@ -38,3 +38,9 @@ with open('test.csv', 'r') as readFile:
 print(lines)
 
 readFile.close()
+
+# from pdf import PdfFileReader, PdfFileWriter
+
+# pdf = pdf.PdfFileReader(open("faultInsertion.pdf", "rb"))
+# for page in pdf.pages:
+#     print(page.extractText())

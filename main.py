@@ -1,6 +1,9 @@
 import csv
 from tkinter import *
 import os
+from pandas import DataFrame
+from itertools import *
+
 
 screen = Tk()
 screen.geometry("1000x720")
@@ -13,6 +16,9 @@ usage_guidelines = Label(text="Please enter the component number of the IC to be
 usage_guidelines.place(x = 20, y = 200)
 usage_guidelines.pack()
 
+def create_dict(keys, values):
+    return dict(zip(keys, values + [None] * (len(keys) - len(values))))
+
 def begin_test():
     cinfo_one = component_one.get()
     cinfo_two = component_two.get()
@@ -20,17 +26,23 @@ def begin_test():
     cinfo_four = component_four.get()
     cinfo_five = component_five.get()
 
-    myData = [[cinfo_one], [cinfo_two], [cinfo_three], [cinfo_four], [cinfo_five]] 
-    myFile = open('test.csv', 'w')  
-    with myFile:
-        writer = csv.writer(myFile)
-        writer.writerows(myData)
-        print("written successfully")
-        os.startfile("test.csv")
-    
-    begin_analyze()
+    myData = [cinfo_one, cinfo_two, cinfo_three, cinfo_four, cinfo_five] 
 
+    target_errors = []
+
+    for i in myData:
+        if(i[0][0:3] == 'T'):
+            target_errors.append("Op-Amp,4 – 11,Dangerous Fault,Op-Amp cannot be operated,Iin = 250μA & Vin = 6mV")
+        elif(i[0][0:3] == 'G'):
+            target_errors.append("MOSFET Relay,1 – 2,Dangerous Fault,Output cannot be driven,Vin Max = 1.48V & IFT = 3mA")
+        elif(i[0][0:3] == 'M'):
+            target_errors.append("Maxim,1 – 19,Safe Fault,Normal Functioning,Iin = +1μA & Vin = +40")
+        else:
+            target_errors.append("Ivalid value. Check spelling or update dataset")
     
+    main_dict  = create_dict(myData, target_errors)
+    print(main_dict)
+
 component_one = Label(text = "Componenet 1")
 component_one.place(x = 2, y = 150)
 

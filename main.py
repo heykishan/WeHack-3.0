@@ -1,6 +1,7 @@
 from analyze import begin_analyze
 import csv
 from tkinter import *
+import os
 
 screen = Tk()
 screen.geometry("1000x720")
@@ -26,6 +27,7 @@ def begin_test():
         writer = csv.writer(myFile)
         writer.writerows(myData)
         print("written successfully")
+        os.startfile("test.csv")
     
     begin_analyze()
 

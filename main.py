@@ -1,4 +1,3 @@
-from analyze import begin_analyze
 import csv
 from tkinter import *
 import os
